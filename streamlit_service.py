@@ -1,6 +1,6 @@
 """
 To run this app, in your terminal:
-> streamlit run streamlit_demo.py
+> streamlit run streamlit_service.py
 
 Source: https://is.gd/SobJvL
 """
