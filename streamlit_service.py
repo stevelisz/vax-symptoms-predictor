@@ -36,7 +36,7 @@ ag_input_tansformer_pf = joblib.load('./model/onehotendcoder_pfizer.joblib')
 hc_input_tansformer_pf = joblib.load('./model/tfidf_vectorizer_pfizer.joblib')
 
 # Create title and sidebar
-st.title("Vaccine Side-effects Predictor")
+st.title("Vaccine-Symptoms Predictor")
 st.sidebar.title("Please provide the information below.")
 
 
@@ -49,7 +49,7 @@ values=[]
 # Display above values in the sidebar
 #for parameter, parameter_df in zip(parameter_list, parameter_default_values):
 age_input= st.sidebar.slider(label='Age', key='Age',value=int(47), min_value=0, max_value=120, step=1)
-gender_input = st.sidebar.selectbox("Gender", ['Female', 'Male', "Not Specified"])
+gender_input = st.sidebar.selectbox("Biological Gender", ['Female', 'Male', "Not Specified"])
 hc_input= st.sidebar.text_input("Exisiting Health Condition", 'disease1, disease2, ...')
 
 
