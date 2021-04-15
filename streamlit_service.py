@@ -36,7 +36,7 @@ ag_input_tansformer_pf = joblib.load('./model/onehotendcoder_pfizer.joblib')
 hc_input_tansformer_pf = joblib.load('./model/tfidf_vectorizer_pfizer.joblib')
 
 # Create title and sidebar
-st.title("Vaccine-Symptoms Predictor")
+st.title("Vaccine Side-effects Predictor")
 st.sidebar.title("Please provide the information below.")
 
 
@@ -49,7 +49,7 @@ values=[]
 # Display above values in the sidebar
 #for parameter, parameter_df in zip(parameter_list, parameter_default_values):
 age_input= st.sidebar.slider(label='Age', key='Age',value=int(47), min_value=0, max_value=120, step=1)
-gender_input = st.sidebar.selectbox("Biological Gender", ['Female', 'Male', "Not Specified"])
+gender_input = st.sidebar.selectbox("Gender", ['Female', 'Male', "Not Specified"])
 hc_input= st.sidebar.text_input("Exisiting Health Condition", 'disease1, disease2, ...')
 
 
@@ -113,7 +113,7 @@ if st.button("Click Here to Predict"):
 	df_Pfizer = pd.read_pickle("./model/PFIZER_DF.pkl")
 	
 	#moderna
-	df1 = df_Moderna[df_Moderna['CLUSTER'] == 3]
+	df1 = df_Moderna[df_Moderna['CLUSTER'] == prediction1[0]]
 	mo_sy = df1['SYMPTOMS'].head(10).tolist()
 	
 	mo_sy = list(chain.from_iterable(mo_sy))
@@ -123,7 +123,7 @@ if st.button("Click Here to Predict"):
 			mo_res.append(i)
 	
 	#pfizer
-	df1 = df_Pfizer[df_Pfizer['CLUSTER'] == 3]
+	df1 = df_Pfizer[df_Pfizer['CLUSTER'] == prediction2[0]]
 	pf_sy = df1['SYMPTOMS'].head(10).tolist()
 	
 	pf_sy = list(chain.from_iterable(pf_sy))
