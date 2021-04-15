@@ -113,7 +113,7 @@ if st.button("Click Here to Predict"):
 	df_Pfizer = pd.read_pickle("./model/PFIZER_DF.pkl")
 	
 	#moderna
-	df1 = df_Moderna[df_Moderna['CLUSTER'] == prediction1[0]
+	df1 = df_Moderna[df_Moderna['CLUSTER'] == 3]
 	mo_sy = df1['SYMPTOMS'].head(10).tolist()
 	
 	mo_sy = list(chain.from_iterable(mo_sy))
@@ -123,7 +123,7 @@ if st.button("Click Here to Predict"):
 			mo_res.append(i)
 	
 	#pfizer
-	df1 = df_Pfizer[df_Pfizer['CLUSTER'] == prediction2[0]
+	df1 = df_Pfizer[df_Pfizer['CLUSTER'] == 3]
 	pf_sy = df1['SYMPTOMS'].head(10).tolist()
 	
 	pf_sy = list(chain.from_iterable(pf_sy))
