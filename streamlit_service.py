@@ -10,6 +10,7 @@ import pandas as pd
 import joblib
 from PIL import Image
 from itertools import chain
+from collections import Counter
 #preprocessing 
 
 def convertAge(string_age):
@@ -115,20 +116,20 @@ if st.button("Click Here to Predict"):
 	#moderna
 	df1 = df_Moderna[df_Moderna['CLUSTER'] == prediction1[0]]
 	mo_sy = df1['SYMPTOMS'].head(10).tolist()
-	
-	mo_sy = list(chain.from_iterable(mo_sy))
+	mo_sy = pd.Series(Counter(chain.from_iterable(df1['SYMPTOMS'].dropna()))).sort_values(ascending=False).head(15).to_frame()
+
 	mo_res = []
-	for i in mo_sy:
+	for i in mo_sy.index:
 		if i not in mo_res:
 			mo_res.append(i)
 	
 	#pfizer
 	df1 = df_Pfizer[df_Pfizer['CLUSTER'] == prediction2[0]]
 	pf_sy = df1['SYMPTOMS'].head(10).tolist()
-	
-	pf_sy = list(chain.from_iterable(pf_sy))
+	pf_sy = pd.Series(Counter(chain.from_iterable(df1['SYMPTOMS'].dropna()))).sort_values(ascending=False).head(15).to_frame()
+
 	pf_res = []
-	for i in pf_sy:
+	for i in pf_sy.index:
 		if i not in pf_res:
 			pf_res.append(i)
 	# Display the corresponding image based on the prediction made by the model
